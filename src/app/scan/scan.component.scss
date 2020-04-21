@@ -1,0 +1,27 @@
+#interactive.viewport {
+    position: relative; 
+    width: 100%; 
+    height: auto; 
+    overflow: hidden; 
+    text-align: center;
+}
+
+// #interactive.viewport > #canvas, 
+// #interactive.viewport > #video {
+//     width:800px;
+//     height: 600px;
+// }
+
+.drawingBuffer {
+    position: absolute; 
+    height: auto; 
+}
+
+.notification {
+    position: absolute; 
+    left: 0; 
+    bottom: 0;
+    right: 0;
+    background: white;
+    box-shadow: 2px 2px 4px #000000;
+}
