@@ -1,6 +1,8 @@
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScanService } from '../services/scan-service/scan.service';
+import { Router } from '@angular/router';
+import { DataService } from '../services/data/data.service';
 
 @Component({
   selector: 'app-scan',
@@ -16,7 +18,9 @@ export class ScanComponent implements OnInit, OnDestroy {
   private detectedReferences = new Array<string>();
 
   constructor(
-    private _scanService: ScanService) {
+    private _scanService: ScanService,
+    private _router: Router,
+    private _dataService: DataService) {
 
   }
   ngOnDestroy(): void {
@@ -41,5 +45,8 @@ export class ScanComponent implements OnInit, OnDestroy {
     this.detectedReferences.push(reference);
     this.isBusy = true;
     this.isNotificationVisible = true;
+
+    let code = this._dataService.saveCode(reference);
+    this._router.navigate(['detail/' + code.id]);
   }
 }
