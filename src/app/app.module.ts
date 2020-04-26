@@ -12,6 +12,8 @@ import { JsQrService } from './services/scan-service/jsQr.service';
 import { DetailComponent } from './detail/detail.component';
 import { DataService } from './services/data/data.service';
 import { GenerateQrCodeComponent } from './generate-qr-code/generate-qr-code.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { GenerateQrCodeComponent } from './generate-qr-code/generate-qr-code.com
     BrowserModule,
     AppRoutingModule,
     QRCodeModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [{
     provide: ScanService, useClass: JsQrService
