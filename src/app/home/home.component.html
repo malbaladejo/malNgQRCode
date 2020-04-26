@@ -1,2 +1,8 @@
-<p>home works!</p>
+<ul>
+    <li *ngFor="let code of codes" [routerLink]="['detail/' + code.id]">
+        <div class="code"> {{code.code}}</div>
+    </li>
+</ul>
+
 <button routerLink='scan'>Scan</button>
+<button routerLink='generate'>Créer</button>

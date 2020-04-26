@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../services/data/data.service';
+import { Code } from '../services/data/code';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public codes: Array<Code>;
+  constructor(private _dataService: DataService) { }
 
   ngOnInit(): void {
+    this.codes = this._dataService.getAllCodes();
   }
 
 }

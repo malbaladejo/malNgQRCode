@@ -1,0 +1,4 @@
+<input [(ngModel)]="value">
+
+<qrcode [qrdata]="value" [size]="256" [level]="'M'"></qrcode>
+<button (click)="save()">Enregistrer</button>

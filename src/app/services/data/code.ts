@@ -1,6 +1,6 @@
 export class Code {
     public id: string;
-    public scanDate: Date;
+    public date: Date;
     public code: string;
     public action: CodeAction
 }

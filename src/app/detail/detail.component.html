@@ -1,2 +1,21 @@
-<p>detail works!</p>
-{{code.code}}
+<div *ngIf="code">
+    <span *ngIf='isScanned()'>
+        Scanné le :
+    </span>
+
+    <span *ngIf='isGenerated()'>
+        Généré le :
+    </span>
+    <span>{{code.date}}</span>
+</div>
+
+<div *ngIf="code">
+    {{code.code}}
+</div>
+
+<div *ngIf="errorMessage">
+    {{errorMessage}}
+</div>
+
+<qrcode *ngIf="code" [qrdata]="code.code" [size]="256" [level]="'M'"></qrcode>
+<button *ngIf="code" (click)="delete()">supprimé</button>
