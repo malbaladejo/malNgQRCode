@@ -16,6 +16,9 @@ export class JsQrService implements ScanService {
     private code: Subject<string>;
     private $code: Observable<string>;
 
+    private refreshIntervalId;
+    private refreshIntervalInMs = 500;
+
     constructor() {
 
     }
@@ -32,6 +35,7 @@ export class JsQrService implements ScanService {
         });
 
         this.video.srcObject = null;
+        clearInterval(this.refreshIntervalId);
     }
 
     private initialize() {
@@ -50,11 +54,11 @@ export class JsQrService implements ScanService {
             this.video.srcObject = stream;
             this.video.setAttribute('playsinline', 'true'); // required to tell iOS safari we don't want fullscreen
             this.video.play();
-            requestAnimationFrame(() => this.onRequestAnimationFrame());
+            this.refreshIntervalId = setInterval(() => this.onRefresh(), this.refreshIntervalInMs);
         });
     }
 
-    private onRequestAnimationFrame() {
+    private onRefresh() {
 
         if (this.video.readyState === this.video.HAVE_ENOUGH_DATA) {
             this.canvasElement.hidden = false;
@@ -79,7 +83,6 @@ export class JsQrService implements ScanService {
             } else {
             }
         }
-        requestAnimationFrame(() => this.onRequestAnimationFrame());
     }
 
     private drawRectangle(
