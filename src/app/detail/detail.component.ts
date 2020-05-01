@@ -3,6 +3,11 @@ import { DataService } from '../services/data/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Code, CodeAction } from '../services/data/code';
 
+class KeyValue<TKey, TValue>{
+  public key: TKey;
+  public value: TValue;
+}
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -12,6 +17,7 @@ export class DetailComponent implements OnInit {
 
   public code: Code;
   public errorMessage;
+  public keyValueMessages = new Array<KeyValue<string, string>>();
 
   constructor(
     private _dataService: DataService,
@@ -23,9 +29,30 @@ export class DetailComponent implements OnInit {
     let id = this._route.snapshot.paramMap.get('id');
     try {
       this.code = this._dataService.getCode(id);
+      this.extractDataFromCode();
     }
     catch (e) {
       this.errorMessage = e;
+    }
+  }
+
+  private extractDataFromCode() {
+    const regex = /([^:]+):([^;]+)[;]*/g;
+    this.keyValueMessages = new Array<KeyValue<string, string>>();
+    if (!this.code.code.match(regex))
+      return;
+
+    const matches = <RegExpMatchArray>regex.exec(this.code.code);
+
+    var monTableau;
+    while ((monTableau = regex.exec(this.code.code)) !== null) {
+      var msg = 'Trouvé ' + monTableau[0] + '. ';
+
+      this.keyValueMessages.push({
+        "key": monTableau[1],
+        "value": monTableau[2]
+      });
+      console.log(msg);
     }
   }
 

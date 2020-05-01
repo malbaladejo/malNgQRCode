@@ -6,10 +6,16 @@
     <span *ngIf='isGenerated()'>
         Généré le :
     </span>
-    <span>{{code.date}}</span>
+    <span>{{code.date|date:'medium'}}</span>
 </div>
 
 <div *ngIf="code">
+    <ul>
+        <li *ngFor="let item of keyValueMessages">
+            {{item.key}}: {{item.value}}
+        </li>
+    </ul>
+    Mssage brut:
     {{code.code}}
 </div>
 
