@@ -1,1 +1,27 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="sidenav-container">
+
+    <mat-sidenav mode="over" [(opened)]="isSideNavOpened">
+        <button mat-icon-button (click)="toggleSideNav()">
+            <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+        <mat-action-list>
+            <!-- <button mat-list-item *ngFor="let menuItem of menuItems" (click)="navigateToMenuItem(menuItem)">
+                <mat-icon>{{menuItem.icon}}</mat-icon> {{menuItem.label}}
+            </button> -->
+        </mat-action-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button mat-icon-button (click)="toggleSideNav()">
+                <mat-icon>menu</mat-icon>
+            </button>
+
+            <span routerLink='/'>QrCode</span>
+            <span class="spacer"></span>
+        </mat-toolbar>
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

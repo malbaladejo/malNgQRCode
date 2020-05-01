@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import { MaterialModule } from './material/material.module';
 import { QRCodeModule } from 'angularx-qrcode';
 
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { DataService } from './services/data/data.service';
 import { GenerateQrCodeComponent } from './generate-qr-code/generate-qr-code.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,11 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MaterialModule,
     QRCodeModule,
     FormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    BrowserAnimationsModule
   ],
   providers: [{
     provide: ScanService, useClass: JsQrService
