@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { faIndustry } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
+  public faIndustry = faIndustry;
   isSideNavOpened = false;
 
   constructor(private router: Router) {
@@ -17,8 +18,7 @@ export class AppComponent {
     this.isSideNavOpened = !this.isSideNavOpened;
   }
 
-  navigateToMenuItem(menuItem) {
+  navigateTo() {
     this.isSideNavOpened = false;
-    this.router.navigate([menuItem.url]);
   }
 }

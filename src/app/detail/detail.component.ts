@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../services/data/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Code, CodeAction } from '../services/data/code';
-
-class KeyValue<TKey, TValue>{
-  public key: TKey;
-  public value: TValue;
-}
+import { Code } from '../services/data/code';
+import { CodeAction } from '../services/data/codeAction';
+import { DataService } from '../services/data/data.service';
+import { FormatCodeService } from '../services/formatCode/formatCode.service';
+import { FormattedCode } from '../services/formatCode/formattedCode';
+import { FormattedCodeType } from '../services/formatCode/formattedCodeType';
+import { KeyValueCode } from '../services/formatCode/keyValueCode';
 
 @Component({
   selector: 'app-detail',
@@ -17,10 +17,16 @@ export class DetailComponent implements OnInit {
 
   public code: Code;
   public errorMessage;
-  public keyValueMessages = new Array<KeyValue<string, string>>();
+  public formattedCode: FormattedCode;
+  public url = FormattedCodeType.url;
+  public email = FormattedCodeType.email;
+  public keyValue = FormattedCodeType.keyValue;
+
+  displayedColumns: string[] = ['key', 'value'];
 
   constructor(
     private _dataService: DataService,
+    private _formatCodeService: FormatCodeService,
     private _route: ActivatedRoute,
     private _router: Router) { }
 
@@ -36,24 +42,12 @@ export class DetailComponent implements OnInit {
     }
   }
 
+  public get keyValueCode(): KeyValueCode {
+    return <KeyValueCode>this.formattedCode;
+  }
+
   private extractDataFromCode() {
-    const regex = /([^:]+):([^;]+)[;]*/g;
-    this.keyValueMessages = new Array<KeyValue<string, string>>();
-    if (!this.code.code.match(regex))
-      return;
-
-    const matches = <RegExpMatchArray>regex.exec(this.code.code);
-
-    var monTableau;
-    while ((monTableau = regex.exec(this.code.code)) !== null) {
-      var msg = 'Trouvé ' + monTableau[0] + '. ';
-
-      this.keyValueMessages.push({
-        "key": monTableau[1],
-        "value": monTableau[2]
-      });
-      console.log(msg);
-    }
+    this.formattedCode = this._formatCodeService.format(this.code.code);
   }
 
   public isScanned(): boolean {

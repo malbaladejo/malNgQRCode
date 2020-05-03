@@ -8,6 +8,10 @@
             <!-- <button mat-list-item *ngFor="let menuItem of menuItems" (click)="navigateToMenuItem(menuItem)">
                 <mat-icon>{{menuItem.icon}}</mat-icon> {{menuItem.label}}
             </button> -->
+
+            <button mat-list-item color="primary" routerLink='generate' (click)="navigateTo()">
+                <fa-icon [icon]="faIndustry"></fa-icon> Créer un QR Code
+            </button>
         </mat-action-list>
     </mat-sidenav>
 

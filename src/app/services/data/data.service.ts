@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Code, CodeAction } from './code';
-import { Guid } from './guid';
 import * as _ from 'lodash';
+import { Code } from './code';
+import { CodeAction } from './codeAction';
+import { Guid } from './guid';
+import { FormatCodeService } from '../formatCode/formatCode.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class DataService {
 
   private codes: Array<Code>;
   private codesKey = "codes-key";
-  constructor() { }
+  constructor(private _formatCodeService: FormatCodeService) { }
 
   public saveCode(value: string, action: CodeAction): Code {
     this.ensuresCodes();
@@ -47,6 +49,7 @@ export class DataService {
     code.date = new Date();
     code.id = Guid.newGuid();
     code.action = CodeAction.Scan;
+    code.type = this._formatCodeService.getType(code.code);
     return code;
   }
 
@@ -61,6 +64,12 @@ export class DataService {
     else {
       this.codes = new Array<Code>();
     }
+
+    // HACK a supprimer dans la prochiane version
+    this.codes.filter(c => c.type == null)
+      .forEach(c => c.type = this._formatCodeService.getType(c.code));
+
+    localStorage.setItem(this.codesKey, JSON.stringify(this.codes));
   }
 
   private saveCodes() {

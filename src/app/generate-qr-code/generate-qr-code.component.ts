@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data/data.service';
-import { CodeAction } from '../services/data/code';
+import { CodeAction } from '../services/data/codeAction';
 
 @Component({
   selector: 'app-generate-qr-code',

@@ -1,13 +1,35 @@
-<ul>
-    <li *ngFor="let code of codes" [routerLink]="['detail/' + code.id]">
-        <div class="code"> {{code.code}}</div>
-    </li>
-</ul>
+<mat-nav-list *ngIf="navigationMode">
+    <mat-list-item *ngFor="let code of codes" [routerLink]="['detail/' + code.id]" appLongPress
+        (onLongPress)="activeEditMode(code)">
+        <fa-icon *ngIf="code.type===email" mat-list-icon [icon]="faAt"></fa-icon>
+        <fa-icon *ngIf="code.type===url" mat-list-icon [icon]="faGlobe"></fa-icon>
+        <fa-icon *ngIf="code.type===keyValue" mat-list-icon [icon]="faList"></fa-icon>
+        <fa-icon *ngIf="code.type===raw" mat-list-icon [icon]="faAlignJustify"></fa-icon>
+        <a class="code" mat-line>{{code.code}}</a>
+    </mat-list-item>
+</mat-nav-list>
 
-<button mat-fab color="primary" routerLink='scan'>
-    <mat-icon>dashboard</mat-icon>
+<mat-selection-list *ngIf="!navigationMode" #items>
+    <mat-list-option *ngFor="let code of codes" (click)="onSelectedItemsChanged(items)" [value]="code"
+        [selected]="isSelected(code)">
+        <fa-icon *ngIf="code.type===email" mat-list-icon [icon]="faAt"></fa-icon>
+        <fa-icon *ngIf="code.type===url" mat-list-icon [icon]="faGlobe"></fa-icon>
+        <fa-icon *ngIf="code.type===keyValue" mat-list-icon [icon]="faList"></fa-icon>
+        <fa-icon *ngIf="code.type===raw" mat-list-icon [icon]="faAlignJustify"></fa-icon>
+        <span class="code" mat-line>{{code.code}}</span>
+    </mat-list-option>
+</mat-selection-list>
+
+<button mat-fab color="primary" routerLink='scan' *ngIf="navigationMode">
+    <fa-icon [icon]="faQrcode"></fa-icon>
 </button>
 
-<button mat-fab color="primary" routerLink='generate'>
-    <mat-icon>build</mat-icon>
-</button>
+<div *ngIf="!navigationMode">
+    <button mat-fab color="primary" (click)="activeNavigationMode()">
+        <fa-icon [icon]="faTimes"></fa-icon>
+    </button>
+
+    <button mat-fab color="primary" (click)="deleteSelectedItems()">
+        <fa-icon [icon]="faTrash"></fa-icon>
+    </button>
+</div>

@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScanService } from '../services/scan-service/scan.service';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data/data.service';
-import { CodeAction } from '../services/data/code';
+import { CodeAction } from '../services/data/codeAction';
 
 @Component({
   selector: 'app-scan',

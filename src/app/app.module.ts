@@ -1,21 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { MaterialModule } from './material/material.module';
-import { QRCodeModule } from 'angularx-qrcode';
-
-import { AppComponent } from './app.component';
-import { ScanService } from './services/scan-service/scan.service';
-import { ScanComponent } from './scan/scan.component';
-import { HomeComponent } from './home/home.component';
-import { JsQrService } from './services/scan-service/jsQr.service';
-import { DetailComponent } from './detail/detail.component';
-import { DataService } from './services/data/data.service';
-import { GenerateQrCodeComponent } from './generate-qr-code/generate-qr-code.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { QRCodeModule } from 'angularx-qrcode';
+import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { DetailComponent } from './detail/detail.component';
+import { LongPressDirective } from './directives/long-press.directive';
+import { GenerateQrCodeComponent } from './generate-qr-code/generate-qr-code.component';
+import { HomeComponent } from './home/home.component';
+import { MaterialModule } from './material/material.module';
+import { ScanComponent } from './scan/scan.component';
+import { DataService } from './services/data/data.service';
+import { FormatCodeService } from './services/formatCode/formatCode.service';
+import { JsQrService } from './services/scan-service/jsQr.service';
+import { ScanService } from './services/scan-service/scan.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ScanComponent,
     HomeComponent,
     DetailComponent,
-    GenerateQrCodeComponent
+    GenerateQrCodeComponent,
+    LongPressDirective
   ],
   imports: [
     BrowserModule,
@@ -32,12 +35,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     QRCodeModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FontAwesomeModule
   ],
-  providers: [{
-    provide: ScanService, useClass: JsQrService
-  },
-    DataService],
+  providers: [
+    { provide: ScanService, useClass: JsQrService },
+    DataService,
+    FormatCodeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

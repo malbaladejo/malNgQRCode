@@ -10,11 +10,38 @@
 </div>
 
 <div *ngIf="code">
-    <ul>
-        <li *ngFor="let item of keyValueMessages">
+    <!-- <ul *ngIf="formattedCode.type===keyValue">
+        <li *ngFor="let item of keyValueCode.keyValues">
             {{item.key}}: {{item.value}}
         </li>
-    </ul>
+    </ul> -->
+
+
+
+    <table *ngIf="formattedCode.type===keyValue" mat-table [dataSource]="keyValueCode.keyValues"
+        class="mat-elevation-z8">
+        <ng-container matColumnDef="key">
+            <th mat-header-cell *matHeaderCellDef> Code </th>
+            <td mat-cell *matCellDef="let element"> {{element.key}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef> valeur </th>
+            <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <a *ngIf="formattedCode.type===url" target="_blank" [href]="formattedCode.code">
+        {{formattedCode.code}}
+    </a>
+
+    <a *ngIf="formattedCode.type===email" target="_blank" [href]="'mailto:'+formattedCode.code">
+        {{formattedCode.code}}
+    </a>
+
     Mssage brut:
     {{code.code}}
 </div>
