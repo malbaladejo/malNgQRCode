@@ -1,4 +1,7 @@
-<input [(ngModel)]="value">
+<mat-form-field class="full-width big-height">
+    <mat-label>Texte</mat-label>
+    <textarea matInput [(ngModel)]="value" rows="10"></textarea>
+</mat-form-field>
 
 <qrcode [qrdata]="value" [size]="256" [level]="'M'"></qrcode>
 <button (click)="save()">Enregistrer</button>
