@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { faIndustry } from '@fortawesome/free-solid-svg-icons';
+import { faIndustry, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,7 @@ import { faIndustry } from '@fortawesome/free-solid-svg-icons';
 })
 export class AppComponent {
   public faIndustry = faIndustry;
+  public faQuestionCircle = faQuestionCircle;
   isSideNavOpened = false;
 
   constructor(private router: Router) {

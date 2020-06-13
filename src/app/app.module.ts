@@ -18,6 +18,7 @@ import { DataService } from './services/data/data.service';
 import { FormatCodeService } from './services/formatCode/formatCode.service';
 import { JsQrService } from './services/scan-service/jsQr.service';
 import { ScanService } from './services/scan-service/scan.service';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ScanService } from './services/scan-service/scan.service';
     HomeComponent,
     DetailComponent,
     GenerateQrCodeComponent,
-    LongPressDirective
+    LongPressDirective,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

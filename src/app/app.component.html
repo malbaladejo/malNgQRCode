@@ -5,12 +5,12 @@
             <mat-icon>keyboard_backspace</mat-icon>
         </button>
         <mat-action-list>
-            <!-- <button mat-list-item *ngFor="let menuItem of menuItems" (click)="navigateToMenuItem(menuItem)">
-                <mat-icon>{{menuItem.icon}}</mat-icon> {{menuItem.label}}
-            </button> -->
-
             <button mat-list-item color="primary" routerLink='generate' (click)="navigateTo()">
                 <fa-icon [icon]="faIndustry" class="icon"></fa-icon> Créer un QR Code
+            </button>
+
+            <button mat-list-item routerLink='about' (click)="navigateTo()">
+                <fa-icon [icon]="faQuestionCircle" class="icon"></fa-icon> À propos
             </button>
         </mat-action-list>
     </mat-sidenav>
@@ -21,7 +21,7 @@
                 <mat-icon>menu</mat-icon>
             </button>
 
-            <span routerLink='/'>QrCode</span>
+            <span routerLink='/'>Balrek</span>
             <span class="spacer"></span>
         </mat-toolbar>
         <div class="container">
