@@ -5,7 +5,7 @@
         <fa-icon *ngIf="code.type===url" mat-list-icon [icon]="faGlobe"></fa-icon>
         <fa-icon *ngIf="code.type===keyValue" mat-list-icon [icon]="faList"></fa-icon>
         <fa-icon *ngIf="code.type===raw" mat-list-icon [icon]="faAlignJustify"></fa-icon>
-        <a class="code" mat-line>{{code.code}}</a>
+        <a class="code" mat-line>{{code.code}}<br />{{code.date}}</a>
     </mat-list-item>
 </mat-nav-list>
 
@@ -16,7 +16,8 @@
         <fa-icon *ngIf="code.type===url" mat-list-icon [icon]="faGlobe"></fa-icon>
         <fa-icon *ngIf="code.type===keyValue" mat-list-icon [icon]="faList"></fa-icon>
         <fa-icon *ngIf="code.type===raw" mat-list-icon [icon]="faAlignJustify"></fa-icon>
-        <span class="code" mat-line>{{code.code}}</span>
+        <span class="code" mat-line>{{code.code}}-{{code.date}}
+        </span>
     </mat-list-option>
 </mat-selection-list>
 

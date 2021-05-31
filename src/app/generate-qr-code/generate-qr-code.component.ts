@@ -10,12 +10,12 @@ import { CodeAction } from '../services/data/codeAction';
 export class GenerateQrCodeComponent implements OnInit {
 
   public value: string;
-  constructor(private _dataService: DataService) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
   }
 
   save() {
-    this._dataService.saveCode(this.value, CodeAction.Generate);
+    this.dataService.saveCode(this.value, CodeAction.Generate);
   }
 }

@@ -14,13 +14,11 @@ export class KeyValueStrategy implements IFormatCodeStrategy {
     format(code: string): FormattedCode {
         const keyValueMessages = new Array<KeyValue<string, string>>();
 
-        var matches;
+        let matches;
         while ((matches = this.regex.exec(code)) !== null) {
-            var msg = 'Trouvé ' + matches[0] + '. ';
-
             keyValueMessages.push({
-                "key": matches[1],
-                "value": matches[2]
+                key: matches[1],
+                value: matches[2]
             });
         }
 

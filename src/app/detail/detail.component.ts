@@ -25,16 +25,17 @@ export class DetailComponent implements OnInit {
   displayedColumns: string[] = ['key', 'value'];
 
   constructor(
-    private _dataService: DataService,
-    private _formatCodeService: FormatCodeService,
-    private _route: ActivatedRoute,
-    private _router: Router) { }
+    private dataService: DataService,
+    private formatCodeService: FormatCodeService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.errorMessage = '';
-    let id = this._route.snapshot.paramMap.get('id');
+    // TOOD use observable
+    const id = this.route.snapshot.paramMap.get('id');
     try {
-      this.code = this._dataService.getCode(id);
+      this.code = this.dataService.getCode(id);
       this.extractDataFromCode();
     }
     catch (e) {
@@ -43,29 +44,29 @@ export class DetailComponent implements OnInit {
   }
 
   public get keyValueCode(): KeyValueCode {
-    return <KeyValueCode>this.formattedCode;
+    return this.formattedCode as KeyValueCode;
   }
 
   private extractDataFromCode() {
-    this.formattedCode = this._formatCodeService.format(this.code.code);
+    this.formattedCode = this.formatCodeService.format(this.code.code);
   }
 
   public isScanned(): boolean {
     if (!this.code) {
       return false;
     }
-    return this.code.action == CodeAction.Scan;
+    return this.code.action === CodeAction.Scan;
   }
 
   public isGenerated(): boolean {
     if (!this.code) {
       return false;
     }
-    return this.code.action == CodeAction.Generate;
+    return this.code.action === CodeAction.Generate;
   }
 
   public delete() {
-    this._dataService.deleteCode(this.code.id);
-    this._router.navigate(['']);
+    this.dataService.deleteCode(this.code.id);
+    this.router.navigate(['']);
   }
 }

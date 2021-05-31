@@ -31,10 +31,10 @@ export class HomeComponent implements OnInit {
   public codes: Array<Code>;
 
   public navigationMode = true;
-  constructor(private _dataService: DataService) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.codes = this._dataService.getAllCodes();
+    this.codes = this.dataService.getAllCodes().sort((c1, c2) => c1.date > c2.date ? -1 : 1);
   }
 
   public onSelectedItemsChanged(items: MatSelectionList) {
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
   }
 
   public deleteSelectedItems() {
-    this.selectedItems.forEach(c => this._dataService.deleteCode(c.id));
+    this.selectedItems.forEach(c => this.dataService.deleteCode(c.id));
     this.activeNavigationMode();
   }
 

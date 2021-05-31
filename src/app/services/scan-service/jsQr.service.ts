@@ -30,7 +30,7 @@ export class JsQrService implements ScanService {
     }
 
     public stop() {
-        this.tracks.forEach(function (track) {
+        this.tracks.forEach(track => {
             track.stop();
         });
 
@@ -42,8 +42,8 @@ export class JsQrService implements ScanService {
         this.code = new Subject<string>();
         this.$code = this.code.asObservable();
 
-        this.video = <HTMLVideoElement>document.createElement('video');
-        this.canvasElement = <HTMLCanvasElement>document.getElementById('canvas');
+        this.video = document.createElement('video') as HTMLVideoElement;
+        this.canvasElement = document.getElementById('canvas') as HTMLCanvasElement;
         this.canvas = this.canvasElement.getContext('2d');
     }
 
@@ -66,12 +66,12 @@ export class JsQrService implements ScanService {
             this.canvasElement.height = this.video.videoHeight;
             this.canvasElement.width = this.video.videoWidth;
             this.canvas.drawImage(this.video, 0, 0, this.canvasElement.width, this.canvasElement.height);
-            var imageData = this.canvas.getImageData(0, 0, this.canvasElement.width, this.canvasElement.height);
-            var code = jsQR(imageData.data, imageData.width, imageData.height, {
+            const imageData = this.canvas.getImageData(0, 0, this.canvasElement.width, this.canvasElement.height);
+            const code = jsQR(imageData.data, imageData.width, imageData.height, {
                 inversionAttempts: 'dontInvert',
             });
             if (code) {
-                const color = '#FF3B58'
+                const color = '#FF3B58';
                 this.drawRectangle(
                     code.location.topLeftCorner,
                     code.location.topRightCorner,

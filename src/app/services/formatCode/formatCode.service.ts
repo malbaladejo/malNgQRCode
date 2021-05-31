@@ -19,18 +19,20 @@ export class FormatCodeService {
     private defaultStrategy = new RawStrategy();
 
     public getType(code: string): FormattedCodeType {
-        for (let i = 0; i < this.strategies.length; i++) {
-            if (this.strategies[i].canFormat(code))
-                return this.strategies[i].getType();
+        for (const strategy of this.strategies) {
+            if (strategy.canFormat(code)) {
+                return strategy.getType();
+            }
         }
 
         return this.defaultStrategy.getType();
     }
 
     public format(code: string): FormattedCode {
-        for (let i = 0; i < this.strategies.length; i++) {
-            if (this.strategies[i].canFormat(code))
-                return this.strategies[i].format(code);
+        for (const strategy of this.strategies) {
+            if (strategy.canFormat(code)) {
+                return strategy.format(code);
+            }
         }
 
         return this.defaultStrategy.format(code);

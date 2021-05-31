@@ -14,8 +14,8 @@ export class LongPressDirective {
   private pressing: boolean;
   private longPressing: boolean;
   private timeout: any;
-  private mouseX: number = 0;
-  private mouseY: number = 0;
+  private mouseX = 0;
+  private mouseY = 0;
 
   @HostBinding('class.press')
   get press() { return this.pressing; }
@@ -25,9 +25,32 @@ export class LongPressDirective {
 
   @HostListener('mousedown', ['$event'])
   onMouseDown(event) {
+    console.debug('mousedown');
+
     // don't do right/middle clicks
     if (event.which !== 1) return;
+    this.capture(event);
+  }
 
+  @HostListener('touchstart', ['$event'])
+  onTouchStart(event) {
+    console.debug('touchstart');
+    this.capture(event);
+  }
+
+  @HostListener('mousemove', ['$event'])
+  onMouseMove(event) {
+    console.debug('mousemove');
+    this.release(event);
+  }
+
+  @HostListener('touchend', ['$event'])
+  onTouchEnd(event) {
+    console.debug('touchend');
+    this.release(event);
+  }
+
+  private capture(event) {
     this.mouseX = event.clientX;
     this.mouseY = event.clientY;
 
@@ -43,8 +66,7 @@ export class LongPressDirective {
     this.loop(event);
   }
 
-  @HostListener('mousemove', ['$event'])
-  onMouseMove(event) {
+  private release(event) {
     if (this.pressing && !this.longPressing) {
       const xThres = (event.clientX - this.mouseX) > 10;
       const yThres = (event.clientY - this.mouseY) > 10;

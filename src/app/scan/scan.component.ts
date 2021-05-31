@@ -19,18 +19,18 @@ export class ScanComponent implements OnInit, OnDestroy {
   private detectedReferences = new Array<string>();
 
   constructor(
-    private _scanService: ScanService,
-    private _router: Router,
-    private _dataService: DataService) {
+    private scanService: ScanService,
+    private router: Router,
+    private dataService: DataService) {
 
   }
   ngOnDestroy(): void {
-    this._scanService.stop()
+    this.scanService.stop();
   }
 
   ngOnInit() {
     console.log('Barcode: initialization');
-    this._scanService.start().subscribe(reference => this.onReferenceDetected(reference));
+    this.scanService.start().subscribe(reference => this.onReferenceDetected(reference));
   }
 
   private onReferenceDetected(reference: string): void {
@@ -47,8 +47,8 @@ export class ScanComponent implements OnInit, OnDestroy {
     this.isBusy = true;
     this.isNotificationVisible = true;
 
-    let code = this._dataService.saveCode(reference, CodeAction.Scan);
-    this._router.navigate(['detail/' + code.id]);
+    const code = this.dataService.saveCode(reference, CodeAction.Scan);
+    this.router.navigate(['detail/' + code.id]);
   }
 
 }

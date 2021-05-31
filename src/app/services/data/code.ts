@@ -5,6 +5,6 @@ export class Code {
     public id: string;
     public date: Date;
     public code: string;
-    public action: CodeAction
+    public action: CodeAction;
     public type: FormattedCodeType;
 }
