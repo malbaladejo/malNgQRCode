@@ -1,6 +1,15 @@
-.code{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 300px;
-    white-space: nowrap;
+.container{
+   height: 100%;
+    overflow-y: auto;
+}
+
+.actions{
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+
+    button{
+        margin-top: 10px;
+        display: block;
+    }
 }

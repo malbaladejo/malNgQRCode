@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faGithub, faAngular } from '@fortawesome/free-brands-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faUser, faArchive } from '@fortawesome/free-solid-svg-icons';
 import { environment } from '../../environments/environment';
 
@@ -11,7 +11,6 @@ import { environment } from '../../environments/environment';
 export class AboutComponent implements OnInit {
   public faGithub = faGithub;
   public faUser = faUser;
-  public faAngular = faAngular;
   public faArchive = faArchive;
 
   public appVersion = environment.appVersion;

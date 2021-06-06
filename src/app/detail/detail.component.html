@@ -1,14 +1,15 @@
-<mat-card>
+<mat-card *ngIf="code">
     <mat-card-header>
 
-        <mat-card-title>Alfar</mat-card-title>
+        <mat-card-title>
+            <app-code-icon [code]="code"></app-code-icon>
+        </mat-card-title>
         <mat-card-subtitle>Nom de branche à partir de Jira</mat-card-subtitle>
     </mat-card-header>
 
     <mat-divider></mat-divider>
     <mat-card-content>
-        <!-- <mat-list>
-            <div> -->
+
         <span *ngIf='isScanned()'>
             Scanné le :
         </span>
@@ -16,6 +17,7 @@
         <span *ngIf='isGenerated()'>
             Généré le :
         </span>
+
         <span>{{code.date|date:'medium'}}</span>
         <!-- </div> -->
         <mat-divider></mat-divider>

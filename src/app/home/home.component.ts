@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data/data.service';
 import { Code } from '../services/data/code';
-import { faQrcode, faIndustry, faAt, faGlobe, faList, faAlignJustify, faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { FormattedCodeType } from '../services/formatCode/formattedCodeType';
+import { faQrcode, faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { MatSelectionList } from '@angular/material/list';
 
 @Component({
@@ -13,18 +12,8 @@ import { MatSelectionList } from '@angular/material/list';
 export class HomeComponent implements OnInit {
 
   public faQrcode = faQrcode;
-  public faIndustry = faIndustry;
-  public faAt = faAt;
-  public faGlobe = faGlobe;
-  public faList = faList;
-  public faAlignJustify = faAlignJustify;
   public faTrash = faTrash;
   public faTimes = faTimes;
-
-  public email = FormattedCodeType.email;
-  public url = FormattedCodeType.url;
-  public keyValue = FormattedCodeType.keyValue;
-  public raw = FormattedCodeType.raw;
 
   private selectedItems: Array<Code>;
 

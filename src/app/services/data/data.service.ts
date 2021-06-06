@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
+
 import { Code } from './code';
 import { CodeAction } from './codeAction';
-import { Guid } from './guid';
+import { DataBaseService } from './dataBase.service';
 import { FormatCodeService } from '../formatCode/formatCode.service';
+import { GuidService } from './guid.service';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +13,12 @@ import { FormatCodeService } from '../formatCode/formatCode.service';
 export class DataService {
 
   private codes: Array<Code>;
-  private codesKey = 'codes-key';
-  constructor(private formatCodeService: FormatCodeService) { }
+  constructor(
+    private dataBaseService: DataBaseService,
+    private formatCodeService: FormatCodeService,
+    private guidService: GuidService) { }
 
-  public saveCode(value: string, action: CodeAction): Code {
+  saveCode(value: string, action: CodeAction): Code {
     this.ensuresCodes();
     const code = this.buildCode(value, action);
 
@@ -39,7 +43,7 @@ export class DataService {
     return this.codes;
   }
 
-  public deleteCode(id: string) {
+  deleteCode(id: string) {
     this.ensuresCodes();
     _.remove(this.codes, i => i.id === id);
     this.saveCodes();
@@ -49,7 +53,7 @@ export class DataService {
     const code = new Code();
     code.code = value;
     code.date = new Date();
-    code.id = Guid.newGuid();
+    code.id = this.guidService.newGuid();
     code.action = CodeAction.Scan;
     code.type = this.formatCodeService.getType(code.code);
     return code;
@@ -87,23 +91,15 @@ export class DataService {
       return;
     }
 
-    const json = localStorage.getItem(this.codesKey);
-    if (json) {
-      this.codes = JSON.parse(json);
-    }
-    else {
-      this.codes = new Array<Code>();
-    }
+    this.codes = this.dataBaseService.getAllCodes();
 
     // HACK a supprimer dans la prochiane version
     this.codes.filter(c => c.type == null)
       .forEach(c => c.type = this.formatCodeService.getType(c.code));
-
-    localStorage.setItem(this.codesKey, JSON.stringify(this.codes));
   }
 
   private saveCodes() {
     this.ensuresCodes();
-    localStorage.setItem(this.codesKey, JSON.stringify(this.codes));
+    this.dataBaseService.saveCodes(this.codes);
   }
 }

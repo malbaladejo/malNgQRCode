@@ -15,8 +15,8 @@
         </mat-action-list>
     </mat-sidenav>
 
-    <mat-sidenav-content>
-        <mat-toolbar color="primary" class="mat-elevation-z6">
+    <mat-sidenav-content class="sidenav-content">
+        <mat-toolbar color="primary" class="header mat-elevation-z6">
             <button mat-icon-button (click)="toggleSideNav()">
                 <mat-icon>menu</mat-icon>
             </button>
@@ -24,8 +24,10 @@
             <span routerLink='/'>Balrek</span>
             <span class="spacer"></span>
         </mat-toolbar>
-        <div class="container">
-            <router-outlet></router-outlet>
+        <div class="content-wrapper">
+            <div class="content">
+                <router-outlet></router-outlet>
+            </div>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
