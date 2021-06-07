@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { GenerateQrCodeComponent } from './generate-qr-code.component';
 
@@ -6,7 +6,7 @@ describe('GenerateQrCodeComponent', () => {
   let component: GenerateQrCodeComponent;
   let fixture: ComponentFixture<GenerateQrCodeComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ GenerateQrCodeComponent ]
     })
