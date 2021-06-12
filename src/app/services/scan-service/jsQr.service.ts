@@ -1,8 +1,9 @@
+import { Observable, Subject } from 'rxjs';
+
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
+import { Point } from 'jsqr/dist/locator';
 import { ScanService } from './scan.service';
 import jsQR from 'jsqr';
-import { Point } from 'jsqr/dist/locator';
 
 @Injectable({
     providedIn: 'root'

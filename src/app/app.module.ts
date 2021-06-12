@@ -25,6 +25,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { dataBaseServiceFactory } from './services/data/dataBase.factory';
 import { environment } from '../environments/environment';
 import { guidServiceFactory } from './services/data/guid.factory';
+import { CodeTypeLabelPipe } from './code-type-label.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { guidServiceFactory } from './services/data/guid.factory';
     LongPressDirective,
     AboutComponent,
     CodeComponent,
-    CodeIconComponent
+    CodeIconComponent,
+    CodeTypeLabelPipe
   ],
   imports: [
     BrowserModule,

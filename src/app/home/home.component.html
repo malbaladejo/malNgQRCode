@@ -1,17 +1,22 @@
 <div class="container">
-    <mat-nav-list *ngIf="navigationMode">
-        <mat-list-item *ngFor="let code of codes" [routerLink]="['detail/' + code.id]" appLongPress
-            (onLongPress)="activeEditMode(code)">
-            <app-code [code]="code"></app-code>
-        </mat-list-item>
-    </mat-nav-list>
+    <mat-card>
+        <mat-nav-list *ngIf="navigationMode">
+            <mat-list-item *ngFor="let code of codes" [routerLink]="['detail/' + code.id]" appLongPress
+                (onLongPress)="activeEditMode(code)">
+                <app-code [code]="code"></app-code>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-nav-list>
 
-    <mat-selection-list *ngIf="!navigationMode" #items>
-        <mat-list-option *ngFor="let code of codes" (click)="onSelectedItemsChanged(items)" [value]="code"
-            [selected]="isSelected(code)">
-            <app-code [code]="code"></app-code>
-        </mat-list-option>
-    </mat-selection-list>
+        <mat-selection-list *ngIf="!navigationMode" #items>
+            <mat-list-option *ngFor="let code of codes" (click)="onSelectedItemsChanged(items)" [value]="code"
+                [selected]="isSelected(code)">
+                <app-code [code]="code"></app-code>
+                <mat-divider></mat-divider>
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-card>
+
 </div>
 
 <div class="actions">

@@ -22,6 +22,12 @@ export class DataBaseServiceMock extends DataBaseService {
         const items = [{
             id: this.guidService.newGuid(),
             action: CodeAction.Scan,
+            code: 'code1:value1;code2:value2;code3:value3',
+            date: new Date(),
+            type: FormattedCodeType.keyValue
+        }, {
+            id: this.guidService.newGuid(),
+            action: CodeAction.Scan,
             code: 'https://angular.io/',
             date: new Date(),
             type: FormattedCodeType.url
