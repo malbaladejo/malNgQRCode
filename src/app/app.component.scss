@@ -1,28 +1,32 @@
-.sidenav-container{
+.sidenav-container {
     height: 100%;
-    background: #eee;   
+    background: #eee;
 }
 
-.sidenav-content{
+.sidenav-content {
     height: 100%;
     position: relative;
 }
 
 .header {
-    top:0;
+    top: 0;
     position: absolute;
 }
 
-.content-wrapper{    
+.content-wrapper {
     padding-top: 56px;
     height: 100%;
 }
 
-.content{
+.content {
     height: 100%;
 }
 
 .icon {
     font-size: 20px;
-    margin:0 20px 0 0;
+    margin: 0 20px 0 0;
+}
+
+.title {
+    margin-left: 0.5rem;
 }

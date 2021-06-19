@@ -31,6 +31,12 @@ export class DataBaseServiceMock extends DataBaseService {
             code: 'https://angular.io/',
             date: new Date(),
             type: FormattedCodeType.url
+        }, {
+            id: this.guidService.newGuid(),
+            action: CodeAction.Scan,
+            code: 'test@free.fr',
+            date: new Date(),
+            type: FormattedCodeType.email
         },
         {
             id: this.guidService.newGuid(),

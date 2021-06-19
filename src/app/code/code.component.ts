@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faQrcode, faIndustry, faAt, faGlobe, faList, faAlignJustify, faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import { Code } from '../services/data/code';
 import { FormattedCodeType } from '../services/formatCode/formattedCodeType';
 
@@ -9,15 +9,6 @@ import { FormattedCodeType } from '../services/formatCode/formattedCodeType';
   styleUrls: ['./code.component.scss']
 })
 export class CodeComponent implements OnInit {
-
-  public faQrcode = faQrcode;
-  public faIndustry = faIndustry;
-  public faAt = faAt;
-  public faGlobe = faGlobe;
-  public faList = faList;
-  public faAlignJustify = faAlignJustify;
-  public faTrash = faTrash;
-  public faTimes = faTimes;
 
   public email = FormattedCodeType.email;
   public url = FormattedCodeType.url;

@@ -1,7 +1,7 @@
 <div class="container">
     <mat-card>
         <mat-nav-list *ngIf="navigationMode">
-            <mat-list-item *ngFor="let code of codes" [routerLink]="['detail/' + code.id]" appLongPress
+            <mat-list-item *ngFor="let code of codes" [navigate]="detailToken(code)" appLongPress
                 (onLongPress)="activeEditMode(code)">
                 <app-code [code]="code"></app-code>
                 <mat-divider></mat-divider>
@@ -20,17 +20,17 @@
 </div>
 
 <div class="actions">
-    <button mat-fab color="primary" routerLink='scan' *ngIf="navigationMode">
-        <fa-icon [icon]="faQrcode"></fa-icon>
+    <button mat-fab color="primary" [navigate]='scanToken()' *ngIf="navigationMode">
+        <fa-icon [icon]="fontAwesome.faQrcode"></fa-icon>
     </button>
 
     <div *ngIf="!navigationMode">
         <button mat-fab color="primary" (click)="activeNavigationMode()">
-            <fa-icon [icon]="faTimes"></fa-icon>
+            <fa-icon [icon]="fontAwesome.faTimes"></fa-icon>
         </button>
 
         <button mat-fab color="primary" (click)="deleteSelectedItems()">
-            <fa-icon [icon]="faTrash"></fa-icon>
+            <fa-icon [icon]="fontAwesome.faTrash"></fa-icon>
         </button>
     </div>
 </div>

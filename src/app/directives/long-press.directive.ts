@@ -5,11 +5,11 @@ import { Directive, EventEmitter, HostBinding, HostListener, Input, Output } fro
 })
 export class LongPressDirective {
 
-  @Input() duration: number = 500;
+  @Input() duration = 500;
 
-  @Output() onLongPress: EventEmitter<any> = new EventEmitter();
-  @Output() onLongPressing: EventEmitter<any> = new EventEmitter();
-  @Output() onLongPressEnd: EventEmitter<any> = new EventEmitter();
+  @Output() onLongPress = new EventEmitter<any>();
+  @Output() onLongPressing = new EventEmitter<any>();
+  @Output() onLongPressEnd = new EventEmitter<any>();
 
   private pressing: boolean;
   private longPressing: boolean;
@@ -25,28 +25,26 @@ export class LongPressDirective {
 
   @HostListener('mousedown', ['$event'])
   onMouseDown(event) {
-    console.debug('mousedown');
-
     // don't do right/middle clicks
-    if (event.which !== 1) return;
+    if (event.which !== 1) {
+      return;
+    }
+
     this.capture(event);
   }
 
   @HostListener('touchstart', ['$event'])
   onTouchStart(event) {
-    console.debug('touchstart');
     this.capture(event);
   }
 
   @HostListener('mousemove', ['$event'])
   onMouseMove(event) {
-    console.debug('mousemove');
     this.release(event);
   }
 
   @HostListener('touchend', ['$event'])
   onTouchEnd(event) {
-    console.debug('touchend');
     this.release(event);
   }
 

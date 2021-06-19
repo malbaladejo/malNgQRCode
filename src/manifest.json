@@ -1,6 +1,6 @@
 {
-  "name": "malNgQRCode",
-  "short_name": "malNgQRCode",
+  "name": "QR Code",
+  "short_name": "QR Code",
   "theme_color": "#1748D1",
   "background_color": "#fafafa",
   "display": "standalone",

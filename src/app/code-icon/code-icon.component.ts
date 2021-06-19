@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faQrcode, faIndustry, faAt, faGlobe, faList, faAlignJustify, faTrash, faTimes, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faAlignJustify, faAt, faGlobe, faList } from '@fortawesome/free-solid-svg-icons';
+
 import { Code } from '../services/data/code';
 import { FormattedCodeType } from '../services/formatCode/formattedCodeType';
 

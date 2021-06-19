@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { GuidService } from "./guid.service";
+import { GuidService } from './guid.service';
+import { Injectable } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'

@@ -16,7 +16,7 @@ export class CodeTypeLabelPipe implements PipeTransform {
       case FormattedCodeType.raw:
         return 'Texte';
       case FormattedCodeType.url:
-        return 'Lien internet'
+        return 'Lien internet';
       default:
         return value;
     }

@@ -5,12 +5,12 @@
             <mat-icon>keyboard_backspace</mat-icon>
         </button>
         <mat-action-list>
-            <button mat-list-item color="primary" routerLink='generate' (click)="navigateTo()">
-                <fa-icon [icon]="faIndustry" class="icon"></fa-icon> Créer un QR Code
+            <button mat-list-item color="primary" [navigate]='generateToken()' (click)="navigateTo()">
+                <fa-icon [icon]="fontAwesome.faIndustry" class="icon"></fa-icon> Créer un QR Code
             </button>
 
-            <button mat-list-item routerLink='about' (click)="navigateTo()">
-                <fa-icon [icon]="faQuestionCircle" class="icon"></fa-icon> À propos
+            <button mat-list-item [navigate]='aboutToken()' (click)="navigateTo()">
+                <fa-icon [icon]="fontAwesome.faQuestionCircle" class="icon"></fa-icon> À propos
             </button>
         </mat-action-list>
     </mat-sidenav>
@@ -21,7 +21,7 @@
                 <mat-icon>menu</mat-icon>
             </button>
 
-            <span routerLink='/'>Balrek</span>
+            <span class="title" [navigate]='homeToken()'>QR Code</span>
             <span class="spacer"></span>
         </mat-toolbar>
         <div class="content-wrapper">

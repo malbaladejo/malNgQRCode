@@ -40,6 +40,26 @@
             "namedChunks": true
           },
           "configurations": {
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "9mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -70,7 +90,7 @@
               "ngswConfigPath": "ngsw-config.json"
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -78,6 +98,9 @@
             "browserTarget": "malNgQRCode:build"
           },
           "configurations": {
+            "development": {
+              "browserTarget": "studio:build:development"
+            },
             "production": {
               "browserTarget": "malNgQRCode:build:production"
             }
@@ -118,7 +141,8 @@
               "e2e/tsconfig.json"
             ],
             "exclude": [
-              "**/node_modules/**"
+              "**/node_modules/**",
+              "**/src/app/shared/fontAnsome.ts"
             ]
           }
         },

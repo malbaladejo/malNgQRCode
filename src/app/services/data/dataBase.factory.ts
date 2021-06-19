@@ -1,7 +1,7 @@
 import { DataBaseService } from './dataBase.service';
 import { DataBaseServiceMock } from './dataBase.mock.service';
 import { GuidService } from './guid.service';
-import { environment } from "src/environments/environment";
+import { environment } from 'src/environments/environment';
 
 export const dataBaseServiceFactory = {
     instance: (guidService: GuidService) => {
