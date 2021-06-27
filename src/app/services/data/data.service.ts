@@ -1,11 +1,10 @@
-import * as _ from 'lodash';
-
 import { Code } from './code';
 import { CodeAction } from './codeAction';
 import { DataBaseService } from './dataBase.service';
 import { FormatCodeService } from '../formatCode/formatCode.service';
 import { GuidService } from './guid.service';
 import { Injectable } from '@angular/core';
+import { remove } from 'lodash-es';
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +44,7 @@ export class DataService {
 
   deleteCode(id: string) {
     this.ensuresCodes();
-    _.remove(this.codes, i => i.id === id);
+    remove(this.codes, i => i.id === id);
     this.saveCodes();
   }
 

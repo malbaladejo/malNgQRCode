@@ -9,7 +9,6 @@ import { CodeTypeLabelPipe } from './code-type-label.pipe';
 import { DataBaseService } from './services/data/dataBase.service';
 import { DataService } from './services/data/data.service';
 import { DetailComponent } from './detail/detail.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormatCodeService } from './services/formatCode/formatCode.service';
 import { FormsModule } from '@angular/forms';
 import { GenerateQrCodeComponent } from './generate-qr-code/generate-qr-code.component';
@@ -28,6 +27,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { dataBaseServiceFactory } from './services/data/dataBase.factory';
 import { environment } from '../environments/environment';
 import { guidServiceFactory } from './services/data/guid.factory';
+import { IconFontModule } from './shared/font-awesome.module';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,7 @@ import { guidServiceFactory } from './services/data/guid.factory';
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
-    FontAwesomeModule
+    IconFontModule
   ],
   providers: [
     { provide: ScanService, useClass: JsQrService },
