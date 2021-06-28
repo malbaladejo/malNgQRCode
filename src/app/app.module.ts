@@ -15,7 +15,6 @@ import { GenerateQrCodeComponent } from './generate-qr-code/generate-qr-code.com
 import { GuidService } from './services/data/guid.service';
 import { HomeComponent } from './home/home.component';
 import { JsQrService } from './services/scan-service/jsQr.service';
-import { LongPressDirective } from './directives/long-press.directive';
 import { MaterialModule } from './material/material.module';
 import { NavigateDirective } from './routesModule/navigate.directive';
 import { NavigateService } from './routesModule/navigate.service';
@@ -36,7 +35,6 @@ import { IconFontModule } from './shared/font-awesome.module';
     HomeComponent,
     DetailComponent,
     GenerateQrCodeComponent,
-    LongPressDirective,
     AboutComponent,
     CodeComponent,
     CodeIconComponent,

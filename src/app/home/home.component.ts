@@ -40,10 +40,9 @@ export class HomeComponent extends ComponentBase implements OnInit {
     this.selectedItems = items.selectedOptions.selected.map(i => i.value);
   }
 
-  activeEditMode(code: Code): void {
+  activeEditMode(): void {
     this.navigationMode = false;
     this.selectedItems = new Array<Code>();
-    this.selectedItems.push(code);
   }
 
   public deleteSelectedItems(): void {
