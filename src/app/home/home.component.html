@@ -19,7 +19,7 @@
 
 <div class="actions">
     <div *ngIf="navigationMode">
-        <button mat-fab color="primary" [navigate]="activeEditMode()">
+        <button mat-fab color="primary" (click)="activeEditMode()">
             <fa-icon [icon]="fontAwesome.faPencilAlt"></fa-icon>
         </button>
 
