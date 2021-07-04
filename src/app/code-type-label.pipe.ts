@@ -7,7 +7,7 @@ import { FormattedCodeType } from './services/formatCode/formattedCodeType';
 })
 export class CodeTypeLabelPipe implements PipeTransform {
 
-  transform(value: FormattedCodeType, ...args: unknown[]): unknown {
+  public transform(value: FormattedCodeType, ...args: unknown[]): unknown {
     switch (value) {
       case FormattedCodeType.email:
         return 'E-mail';

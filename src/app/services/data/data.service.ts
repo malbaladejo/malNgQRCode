@@ -17,7 +17,7 @@ export class DataService {
     private formatCodeService: FormatCodeService,
     private guidService: GuidService) { }
 
-  saveCode(value: string, action: CodeAction): Code {
+  public saveCode(value: string, action: CodeAction): Code {
     this.ensuresCodes();
     const code = this.buildCode(value, action);
 
@@ -27,7 +27,7 @@ export class DataService {
     return code;
   }
 
-  getCode(id: string): Code {
+  public getCode(id: string): Code {
     this.ensuresCodes();
     for (const value of this.codes) {
       if (value.id === id) {
@@ -37,12 +37,12 @@ export class DataService {
     throw (new Error('Unknown id ' + id));
   }
 
-  getAllCodes(): Array<Code> {
+  public getAllCodes(): Array<Code> {
     this.ensuresCodes();
     return this.codes;
   }
 
-  deleteCode(id: string) {
+  public deleteCode(id: string) {
     this.ensuresCodes();
     remove(this.codes, i => i.id === id);
     this.saveCodes();

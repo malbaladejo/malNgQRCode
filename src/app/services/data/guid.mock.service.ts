@@ -8,7 +8,7 @@ export class GuidServiceMock extends GuidService {
 
     private index = 0;
 
-    newGuid(): string {
+    public newGuid(): string {
         this.index++;
         return `${this.index}`;
     }

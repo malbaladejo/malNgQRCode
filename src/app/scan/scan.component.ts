@@ -24,11 +24,11 @@ export class ScanComponent implements OnInit, OnDestroy {
     private dataService: DataService) {
 
   }
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.scanService.stop();
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     console.log('Barcode: initialization');
     this.scanService.start().subscribe(reference => this.onReferenceDetected(reference));
   }

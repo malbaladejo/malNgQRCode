@@ -10,29 +10,29 @@ import { HomeRoute } from './home/home.route';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent extends ComponentBase {
-  isSideNavOpened = false;
+  public isSideNavOpened = false;
 
   constructor() {
     super();
   }
 
-  toggleSideNav() {
+  public toggleSideNav() {
     this.isSideNavOpened = !this.isSideNavOpened;
   }
 
-  navigateTo() {
+  public navigateTo() {
     this.isSideNavOpened = false;
   }
 
-  generateUrl(): any[] {
+  public generateUrl(): any[] {
     return GenerateQrCodeRoute.getUrl();
   }
 
-  aboutUrl(): any[] {
+  public aboutUrl(): any[] {
     return AboutRoute.getUrl();
   }
 
-  homeUrl(): any[] {
+  public homeUrl(): any[] {
     return HomeRoute.getUrl();
   }
 }

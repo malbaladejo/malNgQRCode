@@ -14,11 +14,11 @@ export class DataBaseServiceMock extends DataBaseService {
         super();
     }
 
-    saveCodes(codes: Array<Code>): void {
+    public saveCodes(codes: Array<Code>): void {
         // nothing to do
     }
 
-    getAllCodes(): Code[] {
+    public getAllCodes(): Code[] {
         const items = [{
             id: this.guidService.newGuid(),
             action: CodeAction.Scan,

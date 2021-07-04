@@ -7,11 +7,11 @@ import { Code } from './code';
 export class DataBaseService {
     private codesKey = 'codes-key';
 
-    saveCodes(codes: Array<Code>): void {
+    public saveCodes(codes: Array<Code>): void {
         localStorage.setItem(this.codesKey, JSON.stringify(codes));
     }
 
-    getAllCodes(): Code[] {
+    public getAllCodes(): Code[] {
         const json = localStorage.getItem(this.codesKey);
         if (json) {
             return JSON.parse(json);

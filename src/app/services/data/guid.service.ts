@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class GuidService {
-    newGuid(): string {
+    public newGuid(): string {
         return `${Date.now()}-${this.nextBlock()}-${this.nextBlock()}`;
     }
 

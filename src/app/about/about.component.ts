@@ -14,7 +14,7 @@ export class AboutComponent extends ComponentBase implements OnInit {
 
   constructor() { super(); }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
 }

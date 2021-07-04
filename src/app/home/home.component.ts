@@ -23,7 +23,7 @@ export class HomeComponent extends ComponentBase implements OnInit {
     super();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.codes = this.dataService.getAllCodes().sort((c1, c2) => c1.date > c2.date ? -1 : 1);
   }
 
@@ -31,15 +31,15 @@ export class HomeComponent extends ComponentBase implements OnInit {
     return DetailRoute.getUrl(code.id);
   }
 
-  scanToken(): any[] {
+  public scanToken(): any[] {
     return ScanRoute.getUrl();
   }
 
-  onSelectedItemsChanged(items: MatSelectionList): void {
+  public onSelectedItemsChanged(items: MatSelectionList): void {
     this.selectedItems = items.selectedOptions.selected.map(i => i.value);
   }
 
-  activeEditMode(): void {
+  public activeEditMode(): void {
     this.navigationMode = false;
     this.selectedItems = new Array<Code>();
   }
@@ -49,12 +49,12 @@ export class HomeComponent extends ComponentBase implements OnInit {
     this.activeNavigationMode();
   }
 
-  activeNavigationMode(): void {
+  public activeNavigationMode(): void {
     this.navigationMode = true;
     this.selectedItems = null;
   }
 
-  isSelected(code: Code): boolean {
+  public isSelected(code: Code): boolean {
     return this.selectedItems.find(c => c.id === code.id) != null;
   }
 }

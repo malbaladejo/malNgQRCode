@@ -19,15 +19,15 @@ export class CodeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
-  get code(): Code {
+  public get code(): Code {
     return this.currentCode;
   }
 
   @Input()
-  set code(code: Code) {
+  public set code(code: Code) {
     this.currentCode = code;
   }
 }

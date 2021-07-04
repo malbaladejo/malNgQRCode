@@ -28,7 +28,7 @@ export class DetailComponent extends ComponentBase implements OnInit, OnDestroy 
   public raw = FormattedCodeType.raw;
   public keyValue = FormattedCodeType.keyValue;
 
-  displayedColumns: string[] = ['key', 'value'];
+  public displayedColumns: string[] = ['key', 'value'];
   private idSubscription: Subscription;
 
   constructor(
@@ -41,12 +41,12 @@ export class DetailComponent extends ComponentBase implements OnInit, OnDestroy 
       .subscribe(param => this.loadCodeFromId(param.id));
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.errorMessage = '';
 
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.idSubscription.unsubscribe();
   }
 
@@ -60,7 +60,7 @@ export class DetailComponent extends ComponentBase implements OnInit, OnDestroy 
     }
   }
 
-  get keyValueCode(): KeyValueCode {
+  public get keyValueCode(): KeyValueCode {
     return this.formattedCode as KeyValueCode;
   }
 
@@ -68,26 +68,26 @@ export class DetailComponent extends ComponentBase implements OnInit, OnDestroy 
     this.formattedCode = this.formatCodeService.format(this.code.code);
   }
 
-  isScanned(): boolean {
+  public isScanned(): boolean {
     if (!this.code) {
       return false;
     }
     return this.code.action === CodeAction.Scan;
   }
 
-  isGenerated(): boolean {
+  public isGenerated(): boolean {
     if (!this.code) {
       return false;
     }
     return this.code.action === CodeAction.Generate;
   }
 
-  delete() {
+  public delete() {
     this.dataService.deleteCode(this.code.id);
     this.router.navigate(['']);
   }
 
-  editToken(): any[] {
+  public editToken(): any[] {
     return GenerateQrCodeEditTokenRoute.getUrl(this.code.id);
   }
 }

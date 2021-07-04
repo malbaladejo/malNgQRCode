@@ -1,5 +1,5 @@
 import { FontAwesome } from './fontAnsome';
 
 export class ComponentBase {
-    fontAwesome = FontAwesome;
+    public fontAwesome = FontAwesome;
 }

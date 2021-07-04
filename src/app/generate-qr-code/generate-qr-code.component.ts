@@ -25,14 +25,14 @@ export class GenerateQrCodeComponent extends ComponentBase implements OnInit, On
       .subscribe(param => this.loadCodeFromId(param.id));
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.idSubscription.unsubscribe();
   }
 
-  save() {
+  public save() {
     this.dataService.saveCode(this.value, CodeAction.Generate);
     this.router.navigate(['']);
   }

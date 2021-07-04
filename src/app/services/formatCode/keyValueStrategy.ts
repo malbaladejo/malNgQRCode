@@ -7,11 +7,11 @@ import { KeyValueCode } from './keyValueCode';
 export class KeyValueStrategy implements IFormatCodeStrategy {
     private regex = /([^:]+):([^;]+)[;]*/g;
 
-    canFormat(code: string): boolean {
+    public canFormat(code: string): boolean {
         return code.match(this.regex) != null;
     }
 
-    format(code: string): FormattedCode {
+    public format(code: string): FormattedCode {
         const keyValueMessages = new Array<KeyValue<string, string>>();
 
         let matches = this.regex.exec(code);
@@ -27,7 +27,7 @@ export class KeyValueStrategy implements IFormatCodeStrategy {
         return new KeyValueCode(keyValueMessages);
     }
 
-    getType(): FormattedCodeType {
+    public getType(): FormattedCodeType {
         return FormattedCodeType.keyValue;
     }
 }
