@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutToken } from '../about/about.token';
-import { DetailToken } from '../detail/detail.token';
-import { GenerateQrCodeEditToken } from '../generate-qr-code/generate-qr-code-edit.token';
-import { GenerateQrCodeToken } from '../generate-qr-code/generate-qr-code.token';
-import { HomeToken } from '../home/home.token';
-import { ScanToken } from '../scan/scan.token';
+import { AboutRoute } from '../about/about.route';
+import { DetailRoute } from '../detail/detail.route';
+import { GenerateQrCodeEditTokenRoute } from '../generate-qr-code/generate-qr-code-edit.route';
+import { GenerateQrCodeRoute } from '../generate-qr-code/generate-qr-code.route';
+import { HomeRoute } from '../home/home.route';
+import { ScanRoute } from '../scan/scan.route';
 
 const routes: Routes = [
-  HomeToken.getRoute(),
-  ScanToken.getRoute(),
-  GenerateQrCodeToken.getRoute(),
-  GenerateQrCodeEditToken.getRoute(),
-  DetailToken.getRoute(),
-  AboutToken.getRoute()
+  HomeRoute.getRoute(),
+  ScanRoute.getRoute(),
+  GenerateQrCodeRoute.getRoute(),
+  GenerateQrCodeEditTokenRoute.getRoute(),
+  DetailRoute.getRoute(),
+  AboutRoute.getRoute()
 ];
 
 @NgModule({

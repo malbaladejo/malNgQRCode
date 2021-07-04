@@ -1,9 +1,8 @@
-import { AboutToken } from './about/about.token';
+import { AboutRoute } from './about/about.route';
 import { Component } from '@angular/core';
 import { ComponentBase } from './shared/ComponentBase';
-import { GenerateQrCodeToken } from './generate-qr-code/generate-qr-code.token';
-import { HomeToken } from './home/home.token';
-import { NavigationToken } from './routesModule/navigation.token';
+import { GenerateQrCodeRoute } from './generate-qr-code/generate-qr-code.route';
+import { HomeRoute } from './home/home.route';
 
 @Component({
   selector: 'app-root',
@@ -25,15 +24,15 @@ export class AppComponent extends ComponentBase {
     this.isSideNavOpened = false;
   }
 
-  generateToken(): NavigationToken {
-    return new GenerateQrCodeToken();
+  generateUrl(): any[] {
+    return GenerateQrCodeRoute.getUrl();
   }
 
-  aboutToken(): NavigationToken {
-    return new AboutToken();
+  aboutUrl(): any[] {
+    return AboutRoute.getUrl();
   }
 
-  homeToken(): NavigationToken {
-    return new HomeToken();
+  homeUrl(): any[] {
+    return HomeRoute.getUrl();
   }
 }

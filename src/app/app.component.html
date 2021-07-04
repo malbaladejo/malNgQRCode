@@ -5,11 +5,11 @@
             <mat-icon>keyboard_backspace</mat-icon>
         </button>
         <mat-action-list>
-            <button mat-list-item color="primary" [navigate]='generateToken()' (click)="navigateTo()">
+            <button mat-list-item color="primary" [routerLink]='generateUrl()' (click)="navigateTo()">
                 <fa-icon [icon]="fontAwesome.faIndustry" class="icon"></fa-icon> Créer un QR Code
             </button>
 
-            <button mat-list-item [navigate]='aboutToken()' (click)="navigateTo()">
+            <button mat-list-item [routerLink]='aboutUrl()' (click)="navigateTo()">
                 <fa-icon [icon]="fontAwesome.faQuestionCircle" class="icon"></fa-icon> À propos
             </button>
         </mat-action-list>
@@ -21,7 +21,7 @@
                 <mat-icon>menu</mat-icon>
             </button>
 
-            <span class="title" [navigate]='homeToken()'>QR Code</span>
+            <span class="title" [routerLink]='homeUrl()'>QR Code</span>
             <span class="spacer"></span>
         </mat-toolbar>
         <div class="content-wrapper">

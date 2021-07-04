@@ -1,7 +1,7 @@
 <div class="container">
     <mat-card>
         <mat-nav-list *ngIf="navigationMode">
-            <mat-list-item *ngFor="let code of codes" [navigate]="detailToken(code)">
+            <mat-list-item *ngFor="let code of codes" [routerLink]="detailToken(code)">
                 <app-code [code]="code"></app-code>
                 <mat-divider></mat-divider>
             </mat-list-item>
@@ -23,7 +23,7 @@
             <fa-icon [icon]="fontAwesome.faPencilAlt"></fa-icon>
         </button>
 
-        <button mat-fab color="primary" [navigate]='scanToken()'>
+        <button mat-fab color="primary" [routerLink]='scanToken()'>
             <fa-icon [icon]="fontAwesome.faQrcode"></fa-icon>
         </button>
     </div>

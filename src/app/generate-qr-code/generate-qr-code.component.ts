@@ -6,7 +6,7 @@ import { Code } from '../services/data/code';
 import { CodeAction } from '../services/data/codeAction';
 import { DataService } from '../services/data/data.service';
 import { ComponentBase } from '../shared/ComponentBase';
-import { GenerateQrCodeEditToken } from './generate-qr-code-edit.token';
+import { GenerateQrCodeEditTokenRoute } from './generate-qr-code-edit.route';
 
 @Component({
   selector: 'app-generate-qr-code',
@@ -21,9 +21,8 @@ export class GenerateQrCodeComponent extends ComponentBase implements OnInit, On
   constructor(private dataService: DataService, private router: Router, route: ActivatedRoute) {
     super();
 
-    this.idSubscription = route.paramMap.pipe(
-      map(params => GenerateQrCodeEditToken.getParam(params).id))
-      .subscribe(id => this.loadCodeFromId(id));
+    this.idSubscription = GenerateQrCodeEditTokenRoute.getParam(route)
+      .subscribe(param => this.loadCodeFromId(param.id));
   }
 
   ngOnInit(): void {

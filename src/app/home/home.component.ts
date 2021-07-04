@@ -3,10 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Code } from '../services/data/code';
 import { ComponentBase } from '../shared/ComponentBase';
 import { DataService } from '../services/data/data.service';
-import { DetailToken } from '../detail/detail.token';
 import { MatSelectionList } from '@angular/material/list';
-import { NavigationToken } from '../routesModule/navigation.token';
-import { ScanToken } from '../scan/scan.token';
+import { DetailRoute } from '../detail/detail.route';
+import { ScanRoute } from '../scan/scan.route';
 
 @Component({
   selector: 'app-home',
@@ -28,12 +27,12 @@ export class HomeComponent extends ComponentBase implements OnInit {
     this.codes = this.dataService.getAllCodes().sort((c1, c2) => c1.date > c2.date ? -1 : 1);
   }
 
-  detailToken(code: Code): NavigationToken {
-    return new DetailToken(code.id);
+  public detailToken(code: Code): any[] {
+    return DetailRoute.getUrl(code.id);
   }
 
-  scanToken(): NavigationToken {
-    return new ScanToken();
+  scanToken(): any[] {
+    return ScanRoute.getUrl();
   }
 
   onSelectedItemsChanged(items: MatSelectionList): void {

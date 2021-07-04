@@ -16,8 +16,6 @@ import { GuidService } from './services/data/guid.service';
 import { HomeComponent } from './home/home.component';
 import { JsQrService } from './services/scan-service/jsQr.service';
 import { MaterialModule } from './material/material.module';
-import { NavigateDirective } from './routesModule/navigate.directive';
-import { NavigateService } from './routesModule/navigate.service';
 import { NgModule } from '@angular/core';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ScanComponent } from './scan/scan.component';
@@ -38,8 +36,7 @@ import { IconFontModule } from './shared/font-awesome.module';
     AboutComponent,
     CodeComponent,
     CodeIconComponent,
-    CodeTypeLabelPipe,
-    NavigateDirective
+    CodeTypeLabelPipe
   ],
   imports: [
     BrowserModule,
@@ -60,8 +57,7 @@ import { IconFontModule } from './shared/font-awesome.module';
       deps: dataBaseServiceFactory.dependencies
     },
     DataService,
-    FormatCodeService,
-    NavigateService
+    FormatCodeService
   ],
   bootstrap: [AppComponent]
 })

@@ -5,15 +5,13 @@ import { Code } from '../services/data/code';
 import { CodeAction } from '../services/data/codeAction';
 import { ComponentBase } from '../shared/ComponentBase';
 import { DataService } from '../services/data/data.service';
-import { DetailToken } from './detail.token';
 import { FormatCodeService } from '../services/formatCode/formatCode.service';
 import { FormattedCode } from '../services/formatCode/formattedCode';
 import { FormattedCodeType } from '../services/formatCode/formattedCodeType';
-import { GenerateQrCodeEditToken } from '../generate-qr-code/generate-qr-code-edit.token';
 import { KeyValueCode } from '../services/formatCode/keyValueCode';
-import { NavigationToken } from '../routesModule/navigation.token';
 import { Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { DetailRoute } from './detail.route';
+import { GenerateQrCodeEditTokenRoute } from '../generate-qr-code/generate-qr-code-edit.route';
 
 // TODO revoir le layout pour les raw texte trop long.
 @Component({
@@ -36,12 +34,11 @@ export class DetailComponent extends ComponentBase implements OnInit, OnDestroy 
   constructor(
     private dataService: DataService,
     private formatCodeService: FormatCodeService,
-    private route: ActivatedRoute,
+    route: ActivatedRoute,
     private router: Router) {
     super();
-    this.idSubscription = this.route.paramMap.pipe(
-      map(params => DetailToken.getParam(params).id))
-      .subscribe(id => this.loadCodeFromId(id));
+    this.idSubscription = DetailRoute.getParam(route)
+      .subscribe(param => this.loadCodeFromId(param.id));
   }
 
   ngOnInit(): void {
@@ -90,7 +87,7 @@ export class DetailComponent extends ComponentBase implements OnInit, OnDestroy 
     this.router.navigate(['']);
   }
 
-  editToken(): NavigationToken {
-    return new GenerateQrCodeEditToken(this.code.id);
+  editToken(): any[] {
+    return GenerateQrCodeEditTokenRoute.getUrl(this.code.id);
   }
 }
