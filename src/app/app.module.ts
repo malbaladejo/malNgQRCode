@@ -16,7 +16,7 @@ import { GuidService } from './services/data/guid.service';
 import { HomeComponent } from './home/home.component';
 import { JsQrService } from './services/scan-service/jsQr.service';
 import { MaterialModule } from './material/material.module';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ScanComponent } from './scan/scan.component';
 import { ScanService } from './services/scan-service/scan.service';
@@ -25,6 +25,9 @@ import { dataBaseServiceFactory } from './services/data/dataBase.factory';
 import { environment } from '../environments/environment';
 import { guidServiceFactory } from './services/data/guid.factory';
 import { IconFontModule } from './shared/font-awesome.module';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [
@@ -57,7 +60,8 @@ import { IconFontModule } from './shared/font-awesome.module';
       deps: dataBaseServiceFactory.dependencies
     },
     DataService,
-    FormatCodeService
+    FormatCodeService,
+    { provide: LOCALE_ID, useValue: "fr-FR" }
   ],
   bootstrap: [AppComponent]
 })

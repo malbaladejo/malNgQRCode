@@ -15,6 +15,7 @@ import { GenerateQrCodeEditTokenRoute } from './generate-qr-code-edit.route';
 })
 export class GenerateQrCodeComponent extends ComponentBase implements OnInit, OnDestroy {
   public value: string;
+  public name: string;
   private code: Code;
   private idSubscription: Subscription;
 
@@ -33,12 +34,13 @@ export class GenerateQrCodeComponent extends ComponentBase implements OnInit, On
   }
 
   public save() {
-    this.dataService.saveCode(this.value, CodeAction.Generate);
+    this.dataService.saveCode(this.name, this.value, CodeAction.Generate);
     this.router.navigate(['']);
   }
 
   private loadCodeFromId(id: string) {
     this.code = this.dataService.getCode(id);
     this.value = this.code.code;
+    this.name = this.code.name;
   }
 }

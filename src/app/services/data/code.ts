@@ -7,4 +7,5 @@ export class Code {
     public code: string;
     public action: CodeAction;
     public type: FormattedCodeType;
+    public name: string;
 }

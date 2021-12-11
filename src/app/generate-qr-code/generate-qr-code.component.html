@@ -1,5 +1,10 @@
 <mat-card>
     <mat-form-field class="full-width big-height">
+        <mat-label>Titre</mat-label>
+        <textarea matInput [(ngModel)]="name"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="full-width big-height">
         <mat-label>Texte</mat-label>
         <textarea matInput [(ngModel)]="value" rows="5" maxlength="200"></textarea>
     </mat-form-field>

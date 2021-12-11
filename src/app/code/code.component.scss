@@ -1,15 +1,16 @@
 :host {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  app-code-icon{
-    margin-right: 10px;
-  }
-  
-  .code{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 300px;
-    white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+app-code-icon {
+  margin-right: 10px;
+}
+
+.code {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 300px;
+  white-space: nowrap;
 }

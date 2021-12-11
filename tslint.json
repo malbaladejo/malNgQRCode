@@ -64,6 +64,10 @@
       "timeEnd",
       "trace"
     ],
+    "member-access": [
+      true,
+      "check-accessor"
+    ],
     "no-empty": false,
     "no-inferrable-types": [
       true,

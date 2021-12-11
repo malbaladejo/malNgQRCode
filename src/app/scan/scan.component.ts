@@ -47,7 +47,7 @@ export class ScanComponent implements OnInit, OnDestroy {
     this.isBusy = true;
     this.isNotificationVisible = true;
 
-    const code = this.dataService.saveCode(reference, CodeAction.Scan);
+    const code = this.dataService.saveWithoutNameCode(reference, CodeAction.Scan);
     this.router.navigate(['detail/' + code.id]);
   }
 

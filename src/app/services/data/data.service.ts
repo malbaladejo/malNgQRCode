@@ -17,9 +17,13 @@ export class DataService {
     private formatCodeService: FormatCodeService,
     private guidService: GuidService) { }
 
-  public saveCode(value: string, action: CodeAction): Code {
+  public saveWithoutNameCode(value: string, action: CodeAction): Code {
+    return this.saveCode('', value, action);
+  }
+
+  public saveCode(name: string, value: string, action: CodeAction): Code {
     this.ensuresCodes();
-    const code = this.buildCode(value, action);
+    const code = this.buildCode(name, value, action);
 
     this.AddOrUpdateCode(code);
 
@@ -48,8 +52,9 @@ export class DataService {
     this.saveCodes();
   }
 
-  private buildCode(value: string, action: CodeAction): Code {
+  private buildCode(name: string, value: string, action: CodeAction): Code {
     const code = new Code();
+    code.name = name;
     code.code = value;
     code.date = new Date();
     code.id = this.guidService.newGuid();
