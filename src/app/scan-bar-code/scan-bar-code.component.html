@@ -1,0 +1,5 @@
+<div class="title">
+    <fa-icon [icon]="fontAwesome.faBarcode"></fa-icon> Codebar
+</div>
+<barcode-scanner-livestream type="ean" (valueChanges)="onValueChanges($event)" (started)="(onStarted)">
+</barcode-scanner-livestream>

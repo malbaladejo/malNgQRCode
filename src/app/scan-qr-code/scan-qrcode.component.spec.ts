@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { ScanComponent } from './scan.component';
+import { ScanQrCodeComponent } from './scan-qrcode.component';
 
 describe('ScanComponent', () => {
-  let component: ScanComponent;
-  let fixture: ComponentFixture<ScanComponent>;
+  let component: ScanQrCodeComponent;
+  let fixture: ComponentFixture<ScanQrCodeComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ScanComponent ]
+      declarations: [ScanQrCodeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ScanComponent);
+    fixture = TestBed.createComponent(ScanQrCodeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

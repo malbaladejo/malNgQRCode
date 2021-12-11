@@ -23,8 +23,12 @@
             <fa-icon [icon]="fontAwesome.faPencilAlt"></fa-icon>
         </button>
 
-        <button mat-fab color="primary" [routerLink]='scanToken()'>
+        <button mat-fab color="primary" [routerLink]='scanQrCodeToken()'>
             <fa-icon [icon]="fontAwesome.faQrcode"></fa-icon>
+        </button>
+
+        <button mat-fab color="primary" [routerLink]='scanBarcodeToken()'>
+            <fa-icon [icon]="fontAwesome.faBarcode"></fa-icon>
         </button>
     </div>
 

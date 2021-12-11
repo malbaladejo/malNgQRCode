@@ -18,31 +18,39 @@ import { JsQrService } from './services/scan-service/jsQr.service';
 import { MaterialModule } from './material/material.module';
 import { NgModule } from '@angular/core';
 import { QRCodeModule } from 'angularx-qrcode';
-import { ScanComponent } from './scan/scan.component';
+import { ScanQrCodeComponent } from './scan-qr-code/scan-qrcode.component';
 import { ScanService } from './services/scan-service/scan.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { dataBaseServiceFactory } from './services/data/dataBase.factory';
 import { environment } from '../environments/environment';
 import { guidServiceFactory } from './services/data/guid.factory';
 import { IconFontModule } from './shared/font-awesome.module';
+import { NgxBarcode6Module } from 'ngx-barcode6';
+import { BarCodeComponent } from './bar-code/bar-code.component';
+import { ScanBarcodeComponent } from './scan-bar-code/scan-bar-code.component';
+import { BarcodeScannerLivestreamModule } from "ngx-barcode-scanner";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ScanComponent,
+    ScanQrCodeComponent,
     HomeComponent,
     DetailComponent,
     GenerateQrCodeComponent,
     AboutComponent,
     CodeComponent,
     CodeIconComponent,
-    CodeTypeLabelPipe
+    CodeTypeLabelPipe,
+    BarCodeComponent,
+    ScanBarcodeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
     QRCodeModule,
+    NgxBarcode6Module,
+    BarcodeScannerLivestreamModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,

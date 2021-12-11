@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BarCodeSubType, BarCodeType } from '../services/data/bar-code-type';
 import { Code } from '../services/data/code';
 import { CodeAction } from '../services/data/codeAction';
 import { DataService } from '../services/data/data.service';
@@ -14,9 +15,17 @@ import { GenerateQrCodeEditTokenRoute } from './generate-qr-code-edit.route';
   styleUrls: ['./generate-qr-code.component.scss']
 })
 export class GenerateQrCodeComponent extends ComponentBase implements OnInit, OnDestroy {
-  public value: string;
-  private code: Code;
+  public code: Code;
   private idSubscription: Subscription;
+  public QrCode = BarCodeType.QrCode;
+  public BarCode = BarCodeType.BarCode;
+
+  public barCodeSubTypes = [
+    BarCodeSubType.EAN13,
+    BarCodeSubType.EAN2,
+    BarCodeSubType.EAN5,
+    BarCodeSubType.EAN8,
+    BarCodeSubType.UPC];
 
   constructor(private dataService: DataService, private router: Router, route: ActivatedRoute) {
     super();
@@ -33,12 +42,18 @@ export class GenerateQrCodeComponent extends ComponentBase implements OnInit, On
   }
 
   public save() {
-    this.dataService.saveCode(this.value, CodeAction.Generate);
+    this.dataService.saveCode(this.code);
     this.router.navigate(['']);
   }
 
   private loadCodeFromId(id: string) {
-    this.code = this.dataService.getCode(id);
-    this.value = this.code.code;
+    if (id) {
+      this.code = this.dataService.getCode(id);
+    }
+    else {
+      this.code = new Code();
+      this.code.action = CodeAction.Generate;
+      this.code.barCodeType = BarCodeType.QrCode;
+    }
   }
 }

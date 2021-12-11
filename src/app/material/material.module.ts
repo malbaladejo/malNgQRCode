@@ -9,6 +9,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [],
@@ -20,7 +22,7 @@ import { MatTableModule } from '@angular/material/table';
     // MatAutocompleteModule,
     // MatDatepickerModule,
     // MatFormFieldModule,
-    //  MatRadioModule,
+    MatRadioModule,
     // MatSelectModule,
     // MatSliderModule,
     // MatSlideToggleModule,
@@ -33,7 +35,7 @@ import { MatTableModule } from '@angular/material/table';
     // MatStepperModule,
     // MatTabsModule,
     // MatExpansionModule,
-    // MatButtonToggleModule,
+    MatButtonToggleModule,
     // MatChipsModule,
     MatIconModule,
     // MatProgressSpinnerModule,
@@ -52,7 +54,7 @@ import { MatTableModule } from '@angular/material/table';
     // MatAutocompleteModule,
     // MatDatepickerModule,
     // MatFormFieldModule,
-    // MatRadioModule,
+    MatRadioModule,
     // MatSelectModule,
     // MatSliderModule,
     // MatSlideToggleModule,
@@ -65,7 +67,7 @@ import { MatTableModule } from '@angular/material/table';
     // MatStepperModule,
     // MatTabsModule,
     // MatExpansionModule,
-    // MatButtonToggleModule,
+    MatButtonToggleModule,
     // MatChipsModule,
     MatIconModule,
     // MatProgressSpinnerModule,

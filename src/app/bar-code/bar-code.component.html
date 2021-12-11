@@ -1,0 +1,7 @@
+<div *ngIf="code">
+    <qrcode *ngIf="code.barCodeType === QrCode" [qrdata]="code.code" [size]="256" [level]="'M'"></qrcode>
+
+    <ngx-barcode6 *ngIf="code.barCodeType === BarCode" [bc-format]="code.barCodeSubType" [bc-value]="code.code"
+        [bc-display-value]="true">
+    </ngx-barcode6>
+</div>

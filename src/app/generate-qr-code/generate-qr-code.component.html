@@ -1,10 +1,30 @@
 <mat-card>
+
     <mat-form-field class="full-width big-height">
-        <mat-label>Texte</mat-label>
-        <textarea matInput [(ngModel)]="value" rows="5" maxlength="200"></textarea>
+        <mat-label>Titre</mat-label>
+        <textarea matInput [(ngModel)]="code.label" maxlength="50"></textarea>
     </mat-form-field>
 
-    <qrcode [qrdata]="value" [size]="256" [level]="'M'"></qrcode>
+    <mat-form-field class="full-width big-height">
+        <mat-label>Valeur</mat-label>
+        <textarea matInput [(ngModel)]="code.code" maxlength="200"></textarea>
+    </mat-form-field>
+
+    <div class="toogle">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="code.barCodeType">
+            <mat-button-toggle [value]="QrCode">QrCode</mat-button-toggle>
+            <mat-button-toggle [value]="BarCode">Codebarre</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <div class="toogle" *ngIf="code.barCodeType === BarCode">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="code.barCodeSubType">
+            <mat-button-toggle *ngFor="let subType of barCodeSubTypes" [value]="subType">{{subType}}</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <app-bar-code *ngIf="code" [code]="code"></app-bar-code>
+
     <div class="actions">
         <button mat-fab color="primary" (click)="save()">
             <fa-icon [icon]="fontAwesome.faSave"></fa-icon>

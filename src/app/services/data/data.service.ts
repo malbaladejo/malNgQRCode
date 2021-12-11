@@ -5,6 +5,8 @@ import { FormatCodeService } from '../formatCode/formatCode.service';
 import { GuidService } from './guid.service';
 import { Injectable } from '@angular/core';
 import { remove } from 'lodash-es';
+import { BarCodeType } from './bar-code-type';
+import { UpgradeDataService } from './upgrade-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +17,12 @@ export class DataService {
   constructor(
     private dataBaseService: DataBaseService,
     private formatCodeService: FormatCodeService,
-    private guidService: GuidService) { }
+    private guidService: GuidService,
+    private upgradeDataService: UpgradeDataService) { }
 
-  public saveCode(value: string, action: CodeAction): Code {
+  public saveCode(code: Code): Code {
     this.ensuresCodes();
-    const code = this.buildCode(value, action);
+    this.buildCode(code);
 
     this.AddOrUpdateCode(code);
 
@@ -39,45 +42,46 @@ export class DataService {
 
   public getAllCodes(): Array<Code> {
     this.ensuresCodes();
-    return this.codes;
+    return this.codes.filter(c => !c.isDeleted);
+  }
+
+  public getDeletedCodes(): Array<Code> {
+    this.ensuresCodes();
+    return this.codes.filter(c => c.isDeleted);
   }
 
   public deleteCode(id: string) {
     this.ensuresCodes();
-    remove(this.codes, i => i.id === id);
+    const code = this.getCode(id);
+    if (code) {
+      code.isDeleted = true;
+      code.deleteDate = new Date();
+    }
     this.saveCodes();
   }
 
-  private buildCode(value: string, action: CodeAction): Code {
-    const code = new Code();
-    code.code = value;
+  private buildCode(code: Code): Code {
     code.date = new Date();
-    code.id = this.guidService.newGuid();
-    code.action = CodeAction.Scan;
     code.type = this.formatCodeService.getType(code.code);
+
+    if (!code.id) {
+      code.id = this.guidService.newGuid();
+    }
+
     return code;
   }
 
   private AddOrUpdateCode(code: Code) {
-    if (this.updateCodeIfExist(code)) {
+    if (this.tryGetCodeById(code.id) != null) {
       return;
     }
 
     this.codes.push(code);
   }
 
-  private updateCodeIfExist(code: Code): boolean {
-    const existingCode = this.tryGetCodeByValue(code.code);
-    if (!existingCode) {
-      return false;
-    }
-    existingCode.date = new Date();
-    return true;
-  }
-
-  private tryGetCodeByValue(code: string): Code {
+  private tryGetCodeById(id: string): Code {
     for (const value of this.codes) {
-      if (value.code === code) {
+      if (value.id === id) {
         return value;
       }
     }
@@ -90,11 +94,8 @@ export class DataService {
       return;
     }
 
-    this.codes = this.dataBaseService.getAllCodes();
-
-    // HACK a supprimer dans la prochiane version
-    this.codes.filter(c => c.type == null)
-      .forEach(c => c.type = this.formatCodeService.getType(c.code));
+    this.codes = this.dataBaseService.getCodes();
+    this.upgradeDataService.upgradeData(this.codes);
   }
 
   private saveCodes() {

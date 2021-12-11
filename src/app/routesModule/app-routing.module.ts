@@ -5,11 +5,13 @@ import { DetailRoute } from '../detail/detail.route';
 import { GenerateQrCodeEditTokenRoute } from '../generate-qr-code/generate-qr-code-edit.route';
 import { GenerateQrCodeRoute } from '../generate-qr-code/generate-qr-code.route';
 import { HomeRoute } from '../home/home.route';
-import { ScanRoute } from '../scan/scan.route';
+import { ScanBarcodeRoute } from '../scan-bar-code/scan-bar-code.route';
+import { ScanQrCodeRoute } from '../scan-qr-code/scan-qrcode.route';
 
 const routes: Routes = [
   HomeRoute.getRoute(),
-  ScanRoute.getRoute(),
+  ScanQrCodeRoute.getRoute(),
+  ScanBarcodeRoute.getRoute(),
   GenerateQrCodeRoute.getRoute(),
   GenerateQrCodeEditTokenRoute.getRoute(),
   DetailRoute.getRoute(),

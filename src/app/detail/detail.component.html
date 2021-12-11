@@ -18,18 +18,6 @@
     <mat-card-content>
 
         <mat-nav-list>
-            <!-- date -->
-            <mat-list-item>
-                <span *ngIf='isScanned()'>
-                    Scanné le :
-                </span>
-
-                <span *ngIf='isGenerated()'>
-                    Généré le :
-                </span>
-                <span>{{code.date|date:'medium'}}</span>
-            </mat-list-item>
-            <mat-divider></mat-divider>
 
             <!-- qrcode values-->
             <mat-list-item *ngIf="code" class="height-auto">
@@ -72,7 +60,7 @@
             <mat-divider *ngIf="errorMessage"></mat-divider>
 
             <mat-list-item *ngIf="code" class="height-auto">
-                <qrcode *ngIf="code" [qrdata]="code.code" [size]="256" [level]="'M'"></qrcode>
+                <app-bar-code *ngIf="code" [code]="code"></app-bar-code>
             </mat-list-item>
             <mat-divider *ngIf="code"></mat-divider>
         </mat-nav-list>

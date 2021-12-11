@@ -5,7 +5,8 @@ import { ComponentBase } from '../shared/ComponentBase';
 import { DataService } from '../services/data/data.service';
 import { MatSelectionList } from '@angular/material/list';
 import { DetailRoute } from '../detail/detail.route';
-import { ScanRoute } from '../scan/scan.route';
+import { ScanQrCodeRoute } from '../scan-qr-code/scan-qrcode.route';
+import { ScanBarcodeRoute } from '../scan-bar-code/scan-bar-code.route';
 
 @Component({
   selector: 'app-home',
@@ -31,8 +32,12 @@ export class HomeComponent extends ComponentBase implements OnInit {
     return DetailRoute.getUrl(code.id);
   }
 
-  public scanToken(): any[] {
-    return ScanRoute.getUrl();
+  public scanQrCodeToken(): any[] {
+    return ScanQrCodeRoute.getUrl();
+  }
+
+  public scanBarcodeToken(): any[] {
+    return ScanBarcodeRoute.getUrl();
   }
 
   public onSelectedItemsChanged(items: MatSelectionList): void {
